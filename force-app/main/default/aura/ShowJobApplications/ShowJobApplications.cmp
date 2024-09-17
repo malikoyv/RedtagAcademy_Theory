@@ -1,0 +1,25 @@
+<aura:component controller="getJobApplicationsController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:attribute name="jobApplications" type="List"/>
+    
+    <aura:attribute name="recordId" type="Id"/>
+
+    <lightning:datatable
+        keyField="Id"
+        data="{!v.jobApplications}"
+        columns="{!v.columns}"
+        hideCheckboxColumn="true"
+        onsort="{!c.handleSort}"
+        sortedBy="Applying_date__c"
+        sortedDirection="asc"
+    />
+
+    <lightning:spinner alternativeText="Loading Job Applications" class="slds-is-center"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="columns" type="List" default="[
+    {label: 'Job Application ID', fieldName: 'Name', type: 'text'},
+    {label: 'Applying Date', fieldName: 'Applying_date__c', type: 'date'},
+    {label: 'Average Rating', fieldName: 'Average_Rating__c', type: 'number'},
+    {label: 'Position', fieldName: 'Position__c', type: 'text'},
+    {label: 'Status', fieldName: 'Status__c', type: 'text'}]"/>
+</aura:component>
