@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Candidate Details">
+        <lightning-button label="Show Position Details" onclick={handleShowPositionDetails}></lightning-button>
+
+        <template if:true={positionList}>
+            <div class="slds-m-top_medium">
+                <template for:each={positionList} for:item="position">
+                    <div key={position.Id} class="slds-box slds-theme_default slds-m-bottom_small">
+                        <p><strong>Position Name:</strong> {position.Position__r.Name}</p>
+                        <p><strong>Description:</strong> {position.Position__r.Description__c}</p>
+                        <p><strong>Min Salary:</strong> {position.Position__r.Min_Salary__c}</p>
+                    </div>
+                </template>
+            </div>
+        </template>
+        
+        <template if:true={error}>
+            <p class="slds-text-color_error">Error: {error.body.message}</p>
+        </template>
+    </lightning-card>
+</template>
